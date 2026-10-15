@@ -24,8 +24,7 @@ a:hover{color:#5e2a16}
 .content{max-width:860px;margin:auto}
 h1{text-align:center;font-size:27px;line-height:1.4;margin:10px auto 8px;max-width:860px}
 h1 .n1{color:#7a2e1c}h1 .n2{color:#b5532f}
-h2{font-weight:400;font-size:27px;margin:38px 0 10px;display:flex;align-items:baseline;gap:12px}
-h2 .tc{font:500 12.5px "JetBrains Mono",monospace;color:#b07a62;letter-spacing:.04em;position:relative;top:-3px}
+h2{font-weight:400;font-size:27px;margin:38px 0 10px}
 h3{font-size:17px;margin:22px 0 6px}
 p{margin:0 0 12px;text-align:justify}
 .authors{text-align:center;font-size:15.5px}
@@ -158,11 +157,11 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <figcaption>DirCast directs and commentates a live Dota 2 match. Top: the ten hero cameras over 13 seconds, with the on-air camera framed. Bottom: the program that goes on air and the words DirCast speaks over it.</figcaption>
 </figure>
 
-<h2 id="video"><span class="tc">00:00</span>Video</h2>
+<h2 id="video">Video</h2>
 <p>DirCast running on two held-out professional matches. Every cut and every word is the model's own output; nothing is edited. The panel on the right shows the ten hero cameras, and the bars show the hold-or-switch gate and the speak probability against their rate-controlled thresholds.</p>
 <video src="static/video/dircast_demo.mp4" poster="static/video/poster.jpg" controls muted playsinline preload="metadata"></video>
 
-<h2 id="replay"><span class="tc">00:01</span>Control room</h2>
+<h2 id="replay">Control room</h2>
 <p>Step through a held-out match second by second. On the left is what DirCast puts on air and says; next to it is what the human crew aired and what the casters said. Below them, the ten hero cameras: DirCast's choice is lit in orange and the human director's is outlined in dashed blue. The gauges show the hold-or-switch gate and the speak probability, each against its rate-controlled threshold. Click any second on the timeline or any camera to look at it.</p>
 <div id="cr">
   <div class="bar">
@@ -188,10 +187,10 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <div class="legend" id="cr-legend"></div>
 </div>
 
-<h2 id="abstract"><span class="tc">00:02</span>Abstract</h2>
+<h2 id="abstract">Abstract</h2>
 <p>A live esports broadcast needs a director who chooses which camera goes on air and a caster who talks over that choice, every second and without knowing what comes next. Streaming video language models have learned to commentate, but only over a broadcast that a human director has already produced. We study live broadcast production, in which a model receives the raw camera of every player and must both direct and commentate from the past alone. We present DirCast, a single streaming video language model that does both. Every second it scans all cameras at low resolution, decides with a hold-or-switch director whether and where to cut, and reads the chosen camera at high resolution before it speaks. Its context keeps what went on air and what was said and lets the other views expire, which bounds the cost of a stream of any length. We build a dataset of 27 professional Dota 2 matches with a camera for every hero, the human director's choices and the casters' commentary. DirCast directs better than rule-based and zero-shot directors including GPT-5, and its commentary wins 29.2 percent of comparisons against GPT-4o under the Proact-VL protocol, against 19.4 percent for the strongest of eleven streaming commentators that watch the human broadcast.</p>
 
-<h2 id="method"><span class="tc">00:03</span>Method</h2>
+<h2 id="method">Method</h2>
 <figure>
   <div id="fw-media"><img src="static/img/framework.jpg" alt="Framework" loading="lazy"></div>
   <figcaption>Every second the model reads the clock and events and the ten cameras at low resolution, each with a hero-state token. At the director token \(\langle\mathrm{D}\rangle\) it holds the shot or cuts, the chosen camera is read again at high resolution, and at the commentary token \(\langle\mathrm{C}\rangle\) it decides whether to speak and generates the words. After \(W\) seconds the low-resolution views leave the context.</figcaption>
@@ -204,7 +203,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <li><b>Decoding.</b> The thresholds for cutting and speaking follow the model's running rates toward those of human crews, \(\tau_t = \tau_0 + \gamma\,(\bar r_t - r^{*})\).</li>
 </ul>
 
-<h2 id="results"><span class="tc">00:04</span>Results</h2>
+<h2 id="results">Results</h2>
 <p>All numbers are on the full test split of four unseen matches. Every model runs freely and only sees its own past decisions. Best results are in bold, second best underlined.</p>
 
 <h3>Directing</h3>
@@ -279,7 +278,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   </div>
 </div>
 
-<h2 id="examples"><span class="tc">00:05</span>Examples</h2>
+<h2 id="examples">Examples</h2>
 <p>Kills from the test matches that happen away from the shot on air. The human broadcast shows a hero who is not involved, while DirCast cuts to the fight within a second.</p>
 <div class="sel">
   <button class="on" data-p="q0">Main paper</button><button data-p="q1">Appendix 1&ndash;10</button><button data-p="q2">Appendix 11&ndash;20</button>
@@ -291,7 +290,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 <div class="pane" id="q2"><figure><img src="static/img/appendix2.jpg" alt="More examples 11-20" loading="lazy">
   <figcaption>More examples (11&ndash;20 of 20).</figcaption></figure></div>
 
-<h2 id="dataset"><span class="tc">00:06</span>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 <p>A broadcast shows one camera at a time, and the cameras the director did not choose are lost. In esports they can be recovered: a professional Dota 2 match is fully described by its replay, so it can be filmed again from every hero's point of view and aligned with the broadcast that aired.</p>
 <ul>
   <li>27 professional matches (EPL Masters and BLAST Slam qualifiers, 2026), split by match into 20 training, 3 validation and 4 test matches.</li>
@@ -300,7 +299,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <li>15.2 hours of aligned footage, packaged as 2,912 clips of 36 seconds.</li>
 </ul>
 
-<h2 id="citation"><span class="tc">00:07</span>Citation</h2>
+<h2 id="citation">Citation</h2>
 <pre>@article{gao2026dircast,
   title   = {DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model},
   author  = {Gao, Zixian and Xiu, Lixin and Luo, Penghao and Wu, Erwin and Zhang, Kaipeng},
