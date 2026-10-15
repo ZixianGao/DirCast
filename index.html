@@ -153,7 +153,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 <p class="tldr"><b>TL;DR.</b> We propose <i>DirCast</i>, a single streaming video-language model that receives the raw camera of every player in a live Dota 2 match and, every second, both chooses which camera goes on air and commentates over its own choice.</p>
 
 <figure>
-  <img src="static/img/teaser.jpg" alt="Teaser" loading="lazy">
+  <div id="tz-media"><img src="static/img/teaser.jpg" alt="Teaser" loading="lazy"></div>
   <figcaption>DirCast directs and commentates a live Dota 2 match. Top: the ten hero cameras over 13 seconds, with the on-air camera framed. Bottom: the program that goes on air and the words DirCast speaks over it.</figcaption>
 </figure>
 
@@ -290,16 +290,16 @@ document.querySelectorAll('.sel button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
 });
 
-// method figure: build-up animation on desktop, static figure on phones (as on actionimages.github.io)
-(function(){
-  const box=document.getElementById('fw-media');
+// build-up animations of the teaser and method figures on desktop, static figures on phones (as on actionimages.github.io)
+[['tz-media','static/video/teaser.mp4','static/img/teaser_full.png'],
+ ['fw-media','static/video/framework.mp4','static/img/framework_full.png']].forEach(([id,src,poster])=>{
+  const box=document.getElementById(id);
   if(!box||window.matchMedia('(max-width: 767.98px)').matches) return;
   const v=document.createElement('video');
-  v.src='static/video/framework.mp4'; v.poster='static/img/framework_full.png';
-  v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true;
-  v.style.cssText='width:100%;border:1px solid #e7e1d8;border-radius:6px;background:#fff';
+  v.src=src; v.poster=poster; v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true;
+  v.style.cssText='width:100%;border:1px solid #e7e1d8;border-radius:6px;background:#fff;display:block';
   box.replaceChildren(v);
-})();
+});
 
 // ---------- control room replay (real recorded outputs, see export_replay.py)
 (function(){
