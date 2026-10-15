@@ -256,28 +256,6 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 </tbody></table></div>
 <p class="small">Proact-VL protocol, judged by GPT-5. CC is the win rate against GPT-4o. † Fine-tuned on our training split. The baselines comment on the finished human broadcast, while DirCast comments on the program it directs itself.</p>
 
-<h3>Long streams and training data</h3>
-<div class="two">
-  <div>
-    <div class="tw"><table>
-    <thead>
-    <tr><th></th><th colspan="3">Time per video second (s)</th><th></th><th></th></tr>
-    <tr><th>Context</th><th>Mean ↓</th><th>P95 ↓</th><th>Last 36 s ↓</th><th>KV ↓</th><th>GB ↓</th></tr>
-    </thead>
-    <tbody>
-    <tr><td>Every view kept</td><td>0.60</td><td>1.05</td><td>0.86</td><td>92.6k</td><td>32.0</td></tr>
-    <tr><td>Program memory</td><td>0.42</td><td>0.68</td><td>0.55</td><td>47.6k</td><td>25.1</td></tr>
-    <tr><td>&nbsp;+ 72 s horizon</td><td class="u">0.36</td><td class="u">0.58</td><td class="u">0.38</td><td class="u">12.8k</td><td class="u">19.8</td></tr>
-    <tr class="ours"><td>&nbsp;+ 36 s horizon</td><td class="b">0.29</td><td class="b">0.52</td><td class="b">0.29</td><td class="b">6.9k</td><td class="b">18.9</td></tr>
-    </tbody></table></div>
-    <p class="small">Eight continuous 288-second streams on one GPU. With program memory and a 36-second horizon the cost per video second stays at 0.29 s.</p>
-  </div>
-  <div>
-    <figure style="margin:8px 0 0"><img src="static/img/scaling.png" alt="Accuracy vs. training matches" loading="lazy"></figure>
-    <p class="small">Directing accuracy when training on 5, 10 and 20 matches.</p>
-  </div>
-</div>
-
 <h2 id="examples">Examples</h2>
 <p>Kills from the test matches that happen away from the shot on air. The human broadcast shows a hero who is not involved, while DirCast cuts to the fight within a second.</p>
 <div class="sel">
