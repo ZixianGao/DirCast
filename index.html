@@ -9,7 +9,7 @@
 <meta property="og:title" content="DirCast">
 <meta property="og:description" content="DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model.">
 <meta property="og:image" content="static/video/poster.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -18,13 +18,14 @@
   onload="renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false}]})"></script>
 <style>
 body{margin:0;padding:15px 5% 5px;background:#fff;color:#222;font:15px/1.6 Lato,Verdana,Helvetica,sans-serif}
-a{color:#2f5d8a;text-decoration:none}
-a:hover{color:#183a63}
-#main{max-width:1200px;margin:auto;background:#f7f9fb;border-radius:14px;padding:30px 20px 40px}
+a{color:#9a4a2c;text-decoration:none}
+a:hover{color:#5e2a16}
+#main{max-width:1200px;margin:auto;background:#faf8f5;border-radius:14px;padding:30px 20px 40px}
 .content{max-width:860px;margin:auto}
 h1{text-align:center;font-size:27px;line-height:1.4;margin:10px auto 8px;max-width:860px}
 h1 .n1{color:#7a2e1c}h1 .n2{color:#b5532f}
-h2{font-weight:400;font-size:27px;margin:34px 0 10px}
+h2{font-weight:400;font-size:27px;margin:38px 0 10px;display:flex;align-items:baseline;gap:12px}
+h2 .tc{font:500 12.5px "JetBrains Mono",monospace;color:#b07a62;letter-spacing:.04em;position:relative;top:-3px}
 h3{font-size:17px;margin:22px 0 6px}
 p{margin:0 0 12px;text-align:justify}
 .authors{text-align:center;font-size:15.5px}
@@ -36,11 +37,11 @@ p{margin:0 0 12px;text-align:justify}
 .links a,.links span{display:flex;flex-direction:column;align-items:center;color:#222;font-weight:700;width:70px}
 .links i{font-size:28px;margin-bottom:4px}
 .links span{color:#9aa3ad;font-weight:400}
-.links a:hover{color:#2f5d8a}
+.links a:hover{color:#9a4a2c}
 .tldr{margin-top:22px}
 video{width:100%;border-radius:6px;display:block;background:#000}
 figure{margin:14px 0 0}
-figure img{width:100%;border:1px solid #e3e7ec;border-radius:6px;background:#fff;cursor:zoom-in}
+figure img{width:100%;border:1px solid #e7e1d8;border-radius:6px;background:#fff;cursor:zoom-in}
 figcaption{font-size:14px;color:#555;margin-top:6px;text-align:justify}
 table{border-collapse:collapse;width:100%;font-size:14px;background:#fff;font-variant-numeric:tabular-nums}
 .tw{overflow-x:auto;margin-top:8px}
@@ -50,7 +51,7 @@ thead tr:last-child th{border-bottom:1px solid #222}
 thead tr:first-child th{border-top:2px solid #222}
 tbody tr:last-child td{border-bottom:2px solid #222}
 tr.grp td{font-style:italic;color:#555;padding-top:9px}
-tr.ours td{background:#eef3f8}
+tr.ours td{background:#f6ebe4}
 tr.ref td{color:#888}
 .b{font-weight:700}.u{text-decoration:underline}
 .small{font-size:13.5px;color:#555;margin-top:6px}
@@ -59,25 +60,70 @@ tr.ref td{color:#888}
 ul{margin:4px 0 12px;padding-left:22px}
 li{margin-bottom:6px}
 .sel{margin:12px 0 0}
-.sel button{font:inherit;font-size:14px;border:1px solid #c9d3de;background:#fff;color:#2f5d8a;padding:3px 12px;border-radius:4px;cursor:pointer;margin-right:4px}
-.sel button.on{background:#2f5d8a;color:#fff;border-color:#2f5d8a}
+.sel button{font:500 12.5px "JetBrains Mono",monospace;letter-spacing:.03em;border:1px solid #d8d0c4;background:#fff;color:#5a524a;padding:5px 12px;border-radius:5px;cursor:pointer;margin-right:5px;box-shadow:inset 0 -2px 0 #ece6dd}
+.sel button.on{background:#9a4a2c;color:#fff;border-color:#9a4a2c;box-shadow:inset 0 -2px 0 #6f321c}
 .pane{display:none}.pane.on{display:block}
-pre{background:#fff;border:1px solid #e3e7ec;border-radius:6px;padding:12px 14px;font-size:13px;overflow-x:auto}
-#toc{position:fixed;left:10px;top:105px;background:#f3f6f9;border-radius:6px;padding:14px 16px;font-size:14px;line-height:2}
-#toc .t{font-size:19px;color:#2f5d8a;margin-bottom:4px;line-height:1.4}
+pre{background:#fff;border:1px solid #e7e1d8;border-radius:6px;padding:12px 14px;font-size:13px;overflow-x:auto}
+#toc{position:fixed;left:10px;top:105px;background:#f4f0ea;border-radius:6px;padding:14px 16px;font-size:14px;line-height:2}
+#toc .t{font-size:19px;color:#9a4a2c;margin-bottom:4px;line-height:1.4}
 #toc a{display:block;color:#444}
-#toc a:hover{color:#2f5d8a}
+#toc a:hover{color:#9a4a2c}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9;cursor:zoom-out}
 #lb img{max-width:95vw;max-height:92vh;background:#fff}
 footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 @media(max-width:1350px){#toc{display:none}}
 @media(max-width:700px){.affil span,.authors span{white-space:normal;display:inline-block}.two{flex-direction:column;align-items:stretch}li .katex{white-space:normal}.links{gap:16px}h1{font-size:22px}#main{padding:20px 12px}p{text-align:left}}
+
+/* ---------- control room replay ---------- */
+#cr{background:#16181d;border-radius:10px;padding:14px;color:#d9dce2;font-size:13px;user-select:none;margin-top:10px}
+#cr .bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#cr .key{font:500 12px "JetBrains Mono",monospace;background:#23262d;color:#aeb4bd;border:1px solid #33373f;border-radius:5px;padding:5px 11px;cursor:pointer;box-shadow:inset 0 -2px 0 #1b1d22}
+#cr .key.on{background:#c0603e;color:#fff;border-color:#c0603e;box-shadow:inset 0 -2px 0 #8d4127}
+#cr .play{width:34px;text-align:center;padding:5px 0}
+#cr .clock{font:500 18px "JetBrains Mono",monospace;color:#fff;margin-left:auto}
+#cr .match{color:#8b919b}
+#cr .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#cr [hidden]{display:none!important}
+#cr .mon{position:relative;background:#000;border-radius:6px;overflow:hidden;aspect-ratio:16/9}
+#cr .mon img{width:100%;height:100%;object-fit:cover;display:block}
+#cr .mon .lab{position:absolute;top:7px;left:7px;font:500 11px "JetBrains Mono",monospace;padding:2px 7px;border-radius:4px;background:rgba(0,0,0,.6)}
+#cr .mon .lab b{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:0}
+#cr .mon .sub{position:absolute;left:0;right:0;bottom:0;padding:16px 10px 7px;background:linear-gradient(transparent,rgba(0,0,0,.75));text-align:center;font-size:14px;min-height:20px;color:#fff}
+#cr .mon.hu .sub{color:#c9ccd2;font-style:italic}
+#cr .mon .na{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);font:500 12px "JetBrains Mono",monospace;color:#c9ccd2}
+#cr .ev{position:absolute;top:34px;left:7px;font-size:12px;background:#d24b45;color:#fff;border-radius:4px;padding:2px 8px}
+#cr .wall{grid-column:1/3;display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+#cr .tile{position:relative;aspect-ratio:16/9;border-radius:4px;overflow:hidden;cursor:pointer;outline:1px solid #2a2d34}
+#cr .tile img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.55) brightness(.62)}
+#cr .tile span{position:absolute;left:4px;bottom:2px;font-size:9.5px;white-space:nowrap;overflow:hidden;max-width:92%;color:#cdd1d8;text-shadow:0 1px 2px #000}
+#cr .tile.dc{outline:2px solid #e07a52}
+#cr .tile.dc img{filter:none}
+#cr .tile.hu:after{content:"";position:absolute;inset:2px;border:1.5px dashed #9fb3c8;border-radius:3px}
+#cr .meters{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:12px 2px 4px}
+#cr .m .top{display:flex;justify-content:space-between;font:500 11.5px "JetBrains Mono",monospace;color:#8b919b;margin-bottom:5px}
+#cr .m .top i{font-style:normal;color:#d9dce2}
+#cr .track{position:relative;height:7px;background:#2a2d34;border-radius:4px}
+#cr .fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;transition:width .35s ease}
+#cr .tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:#fff;transition:left .35s ease}
+#cr .tl{margin-top:12px}
+#cr .row{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:8px;margin-top:4px}
+#cr .row .rl{font:500 10.5px "JetBrains Mono",monospace;color:#8b919b}
+#cr .cells{display:grid;grid-template-columns:repeat(36,1fr);gap:2px;position:relative}
+#cr .cells div{height:14px;border-radius:2px;cursor:pointer;opacity:.9}
+#cr .cells div.off{opacity:.18}
+#cr .kills{height:10px}
+#cr .kills div{height:10px;background:none;display:flex;justify-content:center;align-items:center}
+#cr .kills div.k:after{content:"";width:7px;height:7px;background:#d24b45;transform:rotate(45deg)}
+#cr .head{position:absolute;top:-3px;bottom:-3px;width:2px;background:#fff;border-radius:1px;transition:left .3s ease;pointer-events:none}
+#cr .legend{margin-top:10px;font-size:11.5px;color:#8b919b;display:flex;gap:16px;flex-wrap:wrap}
+#cr .legend b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+@media(max-width:800px){#cr .grid{grid-template-columns:1fr}#cr .wall{grid-column:1;grid-template-columns:repeat(5,1fr)}#cr .meters{grid-template-columns:1fr}#cr .row{grid-template-columns:52px 1fr}}
 </style>
 </head>
 <body>
 <nav id="toc">
   <div class="t">Sections</div>
-  <a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#method">Method</a>
+  <a href="#video">Video</a><a href="#replay">Control room</a><a href="#abstract">Abstract</a><a href="#method">Method</a>
   <a href="#results">Results</a><a href="#examples">Examples</a><a href="#dataset">Dataset</a><a href="#citation">Citation</a>
 </nav>
 
@@ -112,14 +158,40 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <figcaption>DirCast directs and commentates a live Dota 2 match. Top: the ten hero cameras over 13 seconds, with the on-air camera framed. Bottom: the program that goes on air and the words DirCast speaks over it.</figcaption>
 </figure>
 
-<h2 id="video">Video</h2>
+<h2 id="video"><span class="tc">00:00</span>Video</h2>
 <p>DirCast running on two held-out professional matches. Every cut and every word is the model's own output; nothing is edited. The panel on the right shows the ten hero cameras, and the bars show the hold-or-switch gate and the speak probability against their rate-controlled thresholds.</p>
 <video src="static/video/dircast_demo.mp4" poster="static/video/poster.jpg" controls muted playsinline preload="metadata"></video>
 
-<h2 id="abstract">Abstract</h2>
+<h2 id="replay"><span class="tc">00:01</span>Control room</h2>
+<p>Step through a held-out match second by second. On the left is what DirCast puts on air and says; next to it is what the human crew aired and what the casters said. Below them, the ten hero cameras: DirCast's choice is lit in orange and the human director's is outlined in dashed blue. The gauges show the hold-or-switch gate and the speak probability, each against its rate-controlled threshold. Click any second on the timeline or any camera to look at it.</p>
+<div id="cr">
+  <div class="bar">
+    <span class="key play" id="cr-play" title="Play / pause">&#10074;&#10074;</span>
+    <span class="key on" data-m="m1">MATCH 1</span><span class="key" data-m="m2">MATCH 2</span>
+    <span class="match" id="cr-match"></span>
+    <span class="clock" id="cr-clock">0:00</span>
+  </div>
+  <div class="grid">
+    <div class="mon dc"><img id="cr-dc" alt=""><span class="lab"><b style="background:#e07a52"></b>DIRCAST &middot; <span id="cr-dch"></span></span><span class="ev" id="cr-ev" hidden></span><div class="sub" id="cr-dcw"></div></div>
+    <div class="mon hu"><img id="cr-hu" alt=""><span class="lab"><b style="background:#9fb3c8"></b>HUMAN CREW &middot; <span id="cr-huh"></span></span><div class="na" id="cr-na" hidden>replay / not live</div><div class="sub" id="cr-huw"></div></div>
+    <div class="wall" id="cr-wall"></div>
+  </div>
+  <div class="meters">
+    <div class="m"><div class="top"><span>GATE g<sub>t</sub> <i id="cr-g"></i> &nbsp;&tau; <i id="cr-tc"></i></span><span id="cr-cut"></span></div><div class="track"><div class="fill" id="cr-gf" style="background:#e07a52"></div><div class="tick" id="cr-gt"></div></div></div>
+    <div class="m"><div class="top"><span>SPEAK p<sub>t</sub> <i id="cr-p"></i> &nbsp;&tau; <i id="cr-ts"></i></span><span id="cr-spk"></span></div><div class="track"><div class="fill" id="cr-pf" style="background:#6cc49c"></div><div class="tick" id="cr-pt"></div></div></div>
+  </div>
+  <div class="tl">
+    <div class="row"><span class="rl">DIRCAST</span><div class="cells" id="cr-tdc"></div></div>
+    <div class="row"><span class="rl">HUMAN</span><div class="cells" id="cr-thu"></div></div>
+    <div class="row"><span class="rl">KILLS</span><div class="cells kills" id="cr-tk"></div></div>
+  </div>
+  <div class="legend" id="cr-legend"></div>
+</div>
+
+<h2 id="abstract"><span class="tc">00:02</span>Abstract</h2>
 <p>A live esports broadcast needs a director who chooses which camera goes on air and a caster who talks over that choice, every second and without knowing what comes next. Streaming video language models have learned to commentate, but only over a broadcast that a human director has already produced. We study live broadcast production, in which a model receives the raw camera of every player and must both direct and commentate from the past alone. We present DirCast, a single streaming video language model that does both. Every second it scans all cameras at low resolution, decides with a hold-or-switch director whether and where to cut, and reads the chosen camera at high resolution before it speaks. Its context keeps what went on air and what was said and lets the other views expire, which bounds the cost of a stream of any length. We build a dataset of 27 professional Dota 2 matches with a camera for every hero, the human director's choices and the casters' commentary. DirCast directs better than rule-based and zero-shot directors including GPT-5, and its commentary wins 29.2 percent of comparisons against GPT-4o under the Proact-VL protocol, against 19.4 percent for the strongest of eleven streaming commentators that watch the human broadcast.</p>
 
-<h2 id="method">Method</h2>
+<h2 id="method"><span class="tc">00:03</span>Method</h2>
 <figure>
   <div id="fw-media"><img src="static/img/framework.jpg" alt="Framework" loading="lazy"></div>
   <figcaption>Every second the model reads the clock and events and the ten cameras at low resolution, each with a hero-state token. At the director token \(\langle\mathrm{D}\rangle\) it holds the shot or cuts, the chosen camera is read again at high resolution, and at the commentary token \(\langle\mathrm{C}\rangle\) it decides whether to speak and generates the words. After \(W\) seconds the low-resolution views leave the context.</figcaption>
@@ -132,7 +204,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <li><b>Decoding.</b> The thresholds for cutting and speaking follow the model's running rates toward those of human crews, \(\tau_t = \tau_0 + \gamma\,(\bar r_t - r^{*})\).</li>
 </ul>
 
-<h2 id="results">Results</h2>
+<h2 id="results"><span class="tc">00:04</span>Results</h2>
 <p>All numbers are on the full test split of four unseen matches. Every model runs freely and only sees its own past decisions. Best results are in bold, second best underlined.</p>
 
 <h3>Directing</h3>
@@ -207,7 +279,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   </div>
 </div>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><span class="tc">00:05</span>Examples</h2>
 <p>Kills from the test matches that happen away from the shot on air. The human broadcast shows a hero who is not involved, while DirCast cuts to the fight within a second.</p>
 <div class="sel">
   <button class="on" data-p="q0">Main paper</button><button data-p="q1">Appendix 1&ndash;10</button><button data-p="q2">Appendix 11&ndash;20</button>
@@ -219,7 +291,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 <div class="pane" id="q2"><figure><img src="static/img/appendix2.jpg" alt="More examples 11-20" loading="lazy">
   <figcaption>More examples (11&ndash;20 of 20).</figcaption></figure></div>
 
-<h2 id="dataset">Dataset</h2>
+<h2 id="dataset"><span class="tc">00:06</span>Dataset</h2>
 <p>A broadcast shows one camera at a time, and the cameras the director did not choose are lost. In esports they can be recovered: a professional Dota 2 match is fully described by its replay, so it can be filmed again from every hero's point of view and aligned with the broadcast that aired.</p>
 <ul>
   <li>27 professional matches (EPL Masters and BLAST Slam qualifiers, 2026), split by match into 20 training, 3 validation and 4 test matches.</li>
@@ -228,7 +300,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
   <li>15.2 hours of aligned footage, packaged as 2,912 clips of 36 seconds.</li>
 </ul>
 
-<h2 id="citation">Citation</h2>
+<h2 id="citation"><span class="tc">00:07</span>Citation</h2>
 <pre>@article{gao2026dircast,
   title   = {DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model},
   author  = {Gao, Zixian and Xiu, Lixin and Luo, Penghao and Wu, Erwin and Zhang, Kaipeng},
@@ -257,8 +329,65 @@ document.querySelectorAll('.sel button').forEach(b=>b.onclick=()=>{
   const v=document.createElement('video');
   v.src='static/video/framework.mp4'; v.poster='static/img/framework_full.png';
   v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true;
-  v.style.cssText='width:100%;border:1px solid #e3e7ec;border-radius:6px;background:#fff';
+  v.style.cssText='width:100%;border:1px solid #e7e1d8;border-radius:6px;background:#fff';
   box.replaceChildren(v);
+})();
+
+// ---------- control room replay (real recorded outputs, see export_replay.py)
+(function(){
+  const COL=['#d9785c','#e6a463','#d8bf63','#8fb07c','#4c9c8f','#5f93c0','#7b80cf','#a77bc4','#cc7aa6','#9a9aa3'];
+  const $=id=>document.getElementById(id);
+  let D=null,key='m1',t=0,timer=null,playing=true;
+  const cache={};
+  function load(k){
+    if(cache[k]) return Promise.resolve(cache[k]);
+    return fetch('static/replay/'+k+'/data.json').then(r=>r.json()).then(d=>{cache[k]=d;
+      d.seconds.forEach((x,s)=>{for(let c=0;c<10;c++){const i=new Image();i.src=tile(k,s,c)}});return d;});
+  }
+  const pad=s=>String(s).padStart(2,'0');
+  const big=(k,s,c)=>'static/replay/'+k+'/b'+pad(s)+'_'+c+'.jpg';
+  const tile=(k,s,c)=>'static/replay/'+k+'/t'+pad(s)+'_'+c+'.jpg';
+  function build(){
+    $('cr-match').textContent=D.teams+' · '+D.league;
+    const wall=$('cr-wall');wall.innerHTML='';
+    D.heroes.forEach((h,c)=>{const d=document.createElement('div');d.className='tile';d.innerHTML='<img alt=""><span>'+h+'</span>';
+      d.onclick=()=>{pause();};wall.appendChild(d)});
+    ['cr-tdc','cr-thu','cr-tk'].forEach(id=>{const e=$(id);e.innerHTML='';
+      D.seconds.forEach((x,s)=>{const c=document.createElement('div');
+        if(id==='cr-tdc'){c.style.background=COL[x.dc];c.title=s+'s: '+D.heroes[x.dc]}
+        else if(id==='cr-thu'){c.style.background=COL[x.hu];if(!x.live)c.classList.add('off');c.title=s+'s: '+D.heroes[x.hu]}
+        else if(x.ev){c.classList.add('k');c.title=x.ev}
+        c.onclick=()=>{pause();show(s)};e.appendChild(c)});
+      const hd=document.createElement('div');hd.className='head';e.appendChild(hd)});
+    $('cr-legend').innerHTML=D.heroes.map((h,c)=>'<span><b style="background:'+COL[c]+'"></b>'+h+'</span>').join('');
+  }
+  function show(s){
+    t=s;const x=D.seconds[s],cut=s>0&&x.dc!==D.seconds[s-1].dc;
+    $('cr-dc').src=big(key,s,x.dc);$('cr-hu').src=big(key,s,x.hu);
+    $('cr-dch').textContent=D.heroes[x.dc].toUpperCase();$('cr-huh').textContent=D.heroes[x.hu].toUpperCase();
+    $('cr-dcw').textContent=x.w;$('cr-huw').textContent=x.hw;$('cr-na').hidden=x.live;
+    $('cr-ev').hidden=!x.ev;$('cr-ev').textContent=x.ev;
+    const c0=Math.round(D.clock0+s);$('cr-clock').textContent=Math.floor(c0/60)+':'+pad(c0%60);
+    [...$('cr-wall').children].forEach((d,c)=>{d.querySelector('img').src=tile(key,s,c);
+      d.classList.toggle('dc',c===x.dc);d.classList.toggle('hu',c===x.hu&&x.live)});
+    $('cr-g').textContent=x.g.toFixed(2);$('cr-tc').textContent=x.tc.toFixed(2);
+    $('cr-p').textContent=x.p.toFixed(2);$('cr-ts').textContent=x.ts.toFixed(2);
+    $('cr-gf').style.width=(x.g*100)+'%';$('cr-gt').style.left=(x.tc*100)+'%';
+    $('cr-pf').style.width=(x.p*100)+'%';$('cr-pt').style.left=(x.ts*100)+'%';
+    $('cr-cut').innerHTML=cut?'<span style="color:#e07a52">CUT</span>':'hold';
+    $('cr-spk').innerHTML=x.w?'<span style="color:#6cc49c">speak</span>':'silent';
+    ['cr-tdc','cr-thu','cr-tk'].forEach(id=>{const e=$(id),n=D.seconds.length;
+      e.querySelector('.head').style.left='calc('+((s+0.5)/n*100)+'% - 1px)'});
+  }
+  function tick(){show((t+1)%D.seconds.length)}
+  function play(){playing=true;$('cr-play').innerHTML='&#10074;&#10074;';clearInterval(timer);timer=setInterval(tick,1000)}
+  function pause(){playing=false;$('cr-play').innerHTML='&#9654;';clearInterval(timer)}
+  $('cr-play').onclick=()=>playing?pause():play();
+  document.querySelectorAll('#cr [data-m]').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('#cr [data-m]').forEach(x=>x.classList.toggle('on',x===b));
+    key=b.dataset.m;load(key).then(d=>{D=d;build();show(0);if(playing)play()})});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!D)return;if(e.isIntersecting){if(playing)play()}else clearInterval(timer)}),{threshold:.25});
+  load('m1').then(d=>{D=d;build();show(0);io.observe($('cr'));});
 })();
 </script>
 </body>
