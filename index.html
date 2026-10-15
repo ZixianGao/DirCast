@@ -121,7 +121,7 @@ footer{text-align:center;font-size:13px;color:#777;margin-top:40px}
 
 <h2 id="method">Method</h2>
 <figure>
-  <img src="static/img/framework.jpg" alt="Framework" loading="lazy">
+  <div id="fw-media"><img src="static/img/framework.jpg" alt="Framework" loading="lazy"></div>
   <figcaption>Every second the model reads the clock and events and the ten cameras at low resolution, each with a hero-state token. At the director token \(\langle\mathrm{D}\rangle\) it holds the shot or cuts, the chosen camera is read again at high resolution, and at the commentary token \(\langle\mathrm{C}\rangle\) it decides whether to speak and generates the words. After \(W\) seconds the low-resolution views leave the context.</figcaption>
 </figure>
 <ul style="margin-top:14px">
@@ -249,6 +249,17 @@ document.querySelectorAll('.sel button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.sel button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
 });
+
+// method figure: build-up animation on desktop, static figure on phones (as on actionimages.github.io)
+(function(){
+  const box=document.getElementById('fw-media');
+  if(!box||window.matchMedia('(max-width: 767.98px)').matches) return;
+  const v=document.createElement('video');
+  v.src='static/video/framework.mp4'; v.poster='static/img/framework_full.png';
+  v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true;
+  v.style.cssText='width:100%;border:1px solid #e3e7ec;border-radius:6px;background:#fff';
+  box.replaceChildren(v);
+})();
 </script>
 </body>
 </html>
